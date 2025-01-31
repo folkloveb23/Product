@@ -3,14 +3,14 @@ import 'package:newest/model/transaction.dart';
 import 'package:newest/provider/TransactionProvider.dart';
 import 'formScreen.dart';
 import 'package:provider/provider.dart';
- 
+
 void main() {
   runApp(const MyApp());
 }
- 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -29,25 +29,25 @@ class MyApp extends StatelessWidget {
     );
   }
 }
- 
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
- 
+
   final String title;
- 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
- 
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
- 
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,11 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 child: ListTile(
                   title: Text(data.title),
-                  subtitle: const Text('วันที่บันทึกข้อมูล'),
+                  subtitle: Text(
+                    '${data.dateTime.toLocal()}'
+                        .split('.')[0], 
+                  ),
                   leading: CircleAvatar(
                     child: FittedBox(
-                      child:
-                          Text(data.amount.toString()),
+                      child: Text(data.amount.toString()),
                     ),
                   ),
                 ),
